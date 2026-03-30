@@ -1,23 +1,550 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "자동차 리스 컨설팅",
+      "provider": {
+        "@type": "Organization",
+        "name": "G70 리스 전문 컨설팅",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "description": "2026년형 제네시스 G70 리스 가격 비교 및 견적 전문가이드. G70 리스 장단점, 월 납입금, 신규 가입 혜택, 저렴한 업체 순위 분석. 내돈내산 후기와 현금 지원 프로모션까지 한 번에 확인하세요.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "G70 리스 상품 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "G70 스탠다드 리스"
+            },
+            "price": "500000",
+            "priceCurrency": "KRW",
+            "description": "가장 기본적인 형태의 G70 리스 상품. 저렴한 비용으로 G70을 이용할 수 있습니다."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "G70 신차 장기렌트"
+            },
+            "price": "600000",
+            "priceCurrency": "KRW",
+            "description": "G70 장기렌트 상품. 보험, 세금 등 모든 부대비용 포함으로 편리하게 이용 가능합니다."
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "G70 리스 무보증 프로모션"
+            },
+            "price": "550000",
+            "priceCurrency": "KRW",
+            "description": "초기 비용 부담 없이 G70을 이용할 수 있는 무보증금 리스 상품입니다."
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #f7f9fc; /* 부드러운 배경색 */
+        color: #333;
+      }
+      header {
+        background-color: #004080; /* 진한 파란색 */
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-top: 1rem;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #ffd700; /* 황금색 강조 */
+      }
+      main {
+        max-width: 1000px;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
+        background-color: white;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        border-radius: 12px;
+        overflow: hidden; /* 이미지 오버플로우 방지 */
+      }
+      h1, h2, h3 {
+        color: #004080;
+        margin-top: 1.5rem;
+        line-height: 1.4;
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+      }
+      h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.5rem;
+        margin-top: 2rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2c3e50; /* 어두운 회색 */
+      }
+      p {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+      section {
+        padding: 2rem 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+      }
+      th, td {
+        padding: 1rem;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background-color: #004080;
+        color: white;
+        font-weight: 500;
+      }
+      td {
+        background-color: #fcfcfc;
+      }
+      .cta-button {
+        display: block;
+        max-width: 300px;
+        margin: 1.5rem auto;
+        background-color: #ff6600;
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .cta-button:hover {
+        background-color: #e65c00;
+        transform: translateY(-2px);
+      }
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .keyword-tags a {
+        background-color: #e0f0ff;
+        color: #0066cc;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .keyword-tags a:hover {
+        background-color: #b3d1ff;
+      }
+      .info-box {
+        background-color: #f0f8ff; /* 연한 파란색 배경 */
+        border-left: 5px solid #004080;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+      }
+      .info-box h3 {
+        color: #004080;
+        margin-top: 0;
+      }
+      .list-style-modern li {
+        margin-bottom: 0.8rem;
+        padding-left: 1rem;
+        text-indent: -1rem;
+      }
+      .list-style-modern li::before {
+        content: "•";
+        color: #ff6600; /* 주황색 마커 */
+        font-weight: bold;
+        display: inline-block;
+        width: 1rem;
+      }
+      .faq-list {
+        margin-bottom: 2rem;
+      }
+      .faq-list dt {
+        font-weight: 700;
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        cursor: pointer;
+        color: #0066cc;
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+        border: 1px solid #eee;
+      }
+      .faq-list dt:hover {
+        background-color: #f0f0f0;
+      }
+      .faq-list dd {
+        margin-left: 1rem;
+        padding: 1rem;
+        background-color: #ffffff;
+        border-left: 2px solid #ff6600;
+        margin-bottom: 1rem;
+        display: none;
+      }
+      .faq-list dt.active + dd {
+        display: block;
+      }
+      .form-section {
+        background-color: #f0f8ff;
+        padding: 2.5rem;
+        border-radius: 10px;
+      }
+      .form-section h3 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #004080;
+      }
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        color: #555;
+      }
+      .form-group input, .form-group select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      .submit-button {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: #00aaff; /* 밝은 파란색 */
+        color: white;
+        font-weight: 700;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-button:hover {
+        background-color: #0099e6;
+      }
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #eaf1f8;
+        margin-top: 2rem;
+      }
+      .image-container {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      .image-container img {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      .external-link {
+        color: #0066cc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      .external-link:hover {
+        color: #004080;
+        text-decoration: underline;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>G70 리스 가격 | 2026 견적 비교 및 신규 가입 혜택 전문가이드</h1>
+        <nav>
+            <ul>
+                <li><a href="#lease-intro">G70 리스 소개</a></li>
+                <li><a href="#comparison">리스 vs. 렌트 vs. 할부</a></li>
+                <li><a href="#price-analysis">견적 및 비용 분석</a></li>
+                <li><a href="#selection-tips">업체 선정 팁</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Pexels 이미지 삽입 (G70 차량 이미지) -->
+        <div class="image-container">
+            <!-- Pexels 이미지 링크: https://www.pexels.com/search/Genesis%20G70/ -->
+            <img src="https://images.pexels.com/photos/11072675/pexels-photo-11072675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="제네시스 G70 차량 이미지">
+        </div>
+
+        <section id="lease-intro">
+            <h2>G70 리스란 무엇이며 왜 선택해야 할까요?</h2>
+            <p><strong>G70 리스</strong>는 제네시스 G70 차량을 소유하는 대신 일정 기간 동안 대여하여 사용하는 금융 상품입니다. 특히 고가의 차량을 운용할 때 초기 비용 부담을 줄이고자 하는 분들에게 인기가 많습니다. <strong>G70 리스 가격</strong>은 초기 보증금, 계약 기간, 잔존가치 설정 등에 따라 달라지며, 이를 정확하게 이해하는 것이 합리적인 선택의 핵심입니다.</p>
+            <p>최근에는 <strong>G70 리스 견적</strong>을 비교할 때 단순히 월 납입금만 보는 것이 아니라, <strong>G70 리스 장단점</strong>을 종합적으로 고려하는 추세입니다. G70 리스는 특히 사업자에게는 비용 처리 혜택을, 개인에게는 신차 교체 용이성을 제공하는 매력적인 옵션입니다. 저희는 고객님의 상황에 맞는 최적의 <strong>G70 리스 추천</strong>을 통해 합리적인 소비를 돕는 전문 업체입니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#price-analysis">G70 리스 비용</a>
+                <a href="#comparison">G70 리스 장단점</a>
+                <a href="#price-analysis">G70 리스 싼곳</a>
+                <a href="#selection-tips">G70 리스 전문업체</a>
+                <a href="#faq">G70 리스 가입</a>
+                <a href="#price-analysis">G70 리스 월 납입금</a>
+                <a href="#comparison">G70 장기렌트 차이점</a>
+                <a href="#selection-tips">G70 리스 현금지원</a>
+                <a href="#selection-tips">G70 리스 신규 가입 혜택</a>
+                <a href="#price-analysis">G70 예상 금액</a>
+            </div>
+        </section>
+
+        <section id="comparison">
+            <h2>G70 리스 vs. 장기렌트 vs. 할부: 장단점 비교</h2>
+            <p>G70 구매를 고려할 때 리스 외에도 장기렌트나 할부 구매가 있습니다. 각 방법은 고유한 <strong>장단점</strong>을 가지고 있으며, 고객님의 운전 습관, 재정 상황, 사업자 여부에 따라 최적의 선택이 달라집니다. 특히 <strong>G70 장기렌트</strong>는 보험료와 세금이 월 납입금에 포함되어 있어 편리하지만, '하', '허', '호' 번호판을 사용해야 한다는 단점이 있습니다. 반면, 리스는 일반 번호판을 사용할 수 있어 소유감을 느낄 수 있습니다. 아래 표를 통해 <strong>G70 리스 차이점</strong>을 명확하게 파악해 보세요.</p>
+            
+            <table aria-label="G70 리스, 장기렌트, 할부 비교표">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>G70 리스</th>
+                        <th>G70 장기렌트</th>
+                        <th>할부 구매</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>차량 번호판</strong></td>
+                        <td>일반 번호판 (소유 차량과 동일)</td>
+                        <td>'하', '허', '호' (렌터카 번호판)</td>
+                        <td>일반 번호판</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보험 처리</strong></td>
+                        <td>개인 보험 가입 (경력 인정)</td>
+                        <td>렌트사 보험 가입 (보험료에 포함)</td>
+                        <td>개인 보험 가입</td>
+                    </tr>
+                    <tr>
+                        <td><strong>세금 (취등록세, 재산세)</strong></td>
+                        <td>월 리스료에 포함</td>
+                        <td>월 렌트료에 포함</td>
+                        <td>개인 부담</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 비용</strong></td>
+                        <td>보증금 (0%~50%), 선납금 선택 가능</td>
+                        <td>보증금 (0%~50%) 선택 가능</td>
+                        <td>취등록세 및 선수금 개인 부담</td>
+                    </tr>
+                    <tr>
+                        <td><strong>만기 선택</strong></td>
+                        <td>인수, 반납, 재리스 가능</td>
+                        <td>인수, 반납 선택 가능</td>
+                        <td>개인 소유</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LPG 차량 이용</strong></td>
+                        <td>불가능</td>
+                        <td>가능 (일반인도 LPG 차량 이용 가능)</td>
+                        <td>불가능 (LPG 일반 판매 X)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box">
+                <h3>주요 비교 포인트: G70 리스의 장점</h3>
+                <ul class="list-style-modern">
+                    <li><strong>절세 효과:</strong> 사업자는 리스료 전액을 손비 처리하여 세금 감면 혜택을 받을 수 있습니다.</li>
+                    <li><strong>심미적 만족:</strong> 일반 번호판 사용으로 차량 소유 만족감이 높습니다.</li>
+                    <li><strong>유연한 만기 처리:</strong> 계약 종료 시점에 차량을 인수할지, 반납할지 결정할 수 있어 유연성이 높습니다.</li>
+                    <li><strong>신차 교체 용이:</strong> 계약 기간 만료 후 즉시 새로운 차량으로 갈아탈 수 있어 신차 효과를 누릴 수 있습니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="price-analysis">
+            <h2>G70 리스 비용 분석: 2026년 예상 가격 및 견적 가이드</h2>
+            <p><strong>G70 리스 비용</strong>은 여러 가지 요인에 의해 결정됩니다. 단순히 <strong>저렴한곳</strong>을 찾는 것도 중요하지만, 월 납입금이 저렴한 만큼 잔존가치가 높게 책정되어 만기 시 인수금이 높아질 수 있다는 점을 고려해야 합니다. 따라서 <strong>G70 예상 금액</strong>을 산출할 때는 총 이자 비용과 만기 시점의 차량 가치를 모두 고려해야 합니다.</p>
+            <p><strong>G70 리스 가격</strong>을 결정하는 핵심 요소는 차량가액, 잔존가치, 계약 기간(36개월/48개월), 보증금 유무입니다. 특히 <strong>2026년</strong>에는 제네시스 G70의 부분변경(페이스리프트) 모델이나 후속 모델 출시가 예상되므로, 기존 모델의 재고 할인이 크게 적용될 수 있습니다. <strong>신규 가입 혜택</strong>이나 프로모션을 활용하면 더욱 <strong>싼곳</strong>을 찾을 수 있습니다.</p>
+
+            <h3>G70 리스 월 납입금 예시 (대략적인 가격)</h3>
+            <p>아래 표는 대략적인 G70 리스 비용 예시입니다. 정확한 견적은 모델 옵션 및 이자율에 따라 달라지므로, 전문가 상담을 통해 확인하시기 바랍니다. (기준: G70 2.5T A/T, 차량가액 약 4,500만원 기준)</p>
+            <table aria-label="G70 리스 예상 월 납입금 예시">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>계약 기간 (36개월)</th>
+                        <th>계약 기간 (48개월)</th>
+                        <th>만기 시 예상 잔존가치</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>보증금 0% (무보증 리스)</strong></td>
+                        <td>월 600,000원 ~ 650,000원</td>
+                        <td>월 550,000원 ~ 600,000원</td>
+                        <td>약 45% (2,025만원)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>보증금 20% (900만원)</strong></td>
+                        <td>월 500,000원 ~ 550,000원</td>
+                        <td>월 450,000원 ~ 500,000원</td>
+                        <td>약 45% (2,025만원)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>선납금 20% (900만원)</strong></td>
+                        <td>월 400,000원 ~ 450,000원</td>
+                        <td>월 350,000원 ~ 400,000원</td>
+                        <td>약 45% (2,025만원)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>참고:</strong> 보증금은 만기 시 환급받는 금액이며, 선납금은 미리 지불하여 월 납입금을 낮추는 금액입니다. <strong>G70 리스 순위</strong>를 매길 때 무조건 월 납입금만 저렴한 곳이 아니라, 총 비용을 비교해야 진정한 <strong>저렴한곳</strong>을 찾을 수 있습니다.</p>
+        </section>
+
+        <section id="selection-tips">
+            <h2>G70 리스 업체 선정 팁: 내돈내산 후기와 현금 지원</h2>
+            <p>수많은 <strong>G70 리스 전문업체</strong> 중에서 어디를 선택해야 할지 고민이시죠? <strong>G70 리스 추천</strong> 업체 선정 시 다음 세 가지를 꼭 확인해야 합니다. 첫째, <strong>현금 지원</strong>이나 <strong>상품권 지원금</strong> 등 프로모션 혜택의 실효성입니다. 둘째, 딜러의 전문성입니다. G70 리스 계약은 복잡한 금융상품이므로 전문적인 컨설팅이 필수입니다. 셋째, <strong>내돈내산 후기</strong>를 통해 실제 고객들의 만족도를 파악하는 것입니다.</p>
+
+            <h3>1. 현금 지원 및 프로모션 활용</h3>
+            <p><strong>신규 가입 혜택</strong>이나 프로모션은 업체마다 다르게 진행됩니다. <strong>G70 리스 할인</strong>을 최대치로 받기 위해서는 여러 업체의 견적을 동시에 비교해야 합니다. 일부 업체에서는 특정 시기에 <strong>현금 지원</strong>을 제공하기도 합니다. 하지만 과도한 현금 지원을 미끼로 계약을 유도하는 <strong>싼곳</strong> 업체는 피해야 합니다. 계약 조건을 꼼꼼히 확인하고, 약관에 명시되지 않은 구두 약속은 신뢰하지 않는 것이 좋습니다.</p>
+
+            <h3>2. G70 리스 후기 및 디시 인사이드 정보 활용</h3>
+            <p>인터넷 커뮤니티(예: <strong>G70 디시 인사이드</strong> 갤러리)나 네이버 카페 등에서 <strong>G70 리스 후기</strong>를 찾아보는 것도 좋은 방법입니다. 실제 사용자들의 경험은 광고성 정보보다 훨씬 신뢰할 수 있습니다. 특히 <strong>내돈내산 후기</strong>를 통해 딜러의 친절도, 차량 인도 과정의 꼼꼼함 등을 확인할 수 있습니다. <strong>전문 업체</strong>의 <strong>G70 리스 순위</strong>는 후기를 통해 자연스럽게 형성됩니다.</p>
+            <p>최근에는 <strong>ChatGPT</strong>나 <strong>Gemini AI</strong>와 같은 인공지능 기술이 탑재된 비교 플랫폼도 등장하고 있습니다. 이러한 플랫폼을 활용하면 수많은 리스 상품 데이터를 빠르게 비교할 수 있어 <strong>G70 예상 금액</strong>을 더 정확하게 예측할 수 있습니다.</p>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p>G70 리스에 대해 고객님들이 가장 궁금해하는 질문들을 모아봤습니다. 궁금증을 해소하고 현명하게 리스를 계약하세요.</p>
+            <dl class="faq-list">
+                <dt tabindex="0" aria-expanded="false">G70 리스 계약 시 필요한 서류는 무엇인가요?</dt>
+                <dd>개인 고객의 경우 신분증 사본, 운전면허증 사본, 주민등록등본이 필요합니다. 소득 증빙 서류(재직증명서, 소득금액증명원 등)가 추가로 요구될 수 있습니다. 사업자 고객은 사업자등록증, 재무제표, 인감증명서 등이 필요합니다.</dd>
+                <dt tabindex="0" aria-expanded="false">G70 리스 만기 시 차량 인수가 무조건 유리한가요?</dt>
+                <dd>그렇지 않습니다. 만기 시점의 중고차 시세와 잔존가치를 비교하여 결정해야 합니다. 시세가 잔존가치보다 높으면 인수하여 판매하는 것이 유리할 수 있습니다. 반대로 시세가 낮으면 반납하는 것이 손해를 줄이는 방법입니다.</dd>
+                <dt tabindex="0" aria-expanded="false">G70 리스 중도 해지 시 위약금은 얼마나 되나요?</dt>
+                <dd>G70 리스 중도 해지는 원칙적으로 불리합니다. 위약금은 남은 리스료의 일정 비율(보통 20~40%)로 책정되며, 계약서에 명시된 위약금 규정을 반드시 확인해야 합니다. 중도 해지보다 승계를 통해 차량을 넘기는 것이 더 유리할 수 있습니다.</dd>
+                <dt tabindex="0" aria-expanded="false">2026년 G70 모델이 출시되면 기존 리스 비용이 달라지나요?</dt>
+                <dd>2026년에 신형 모델이 출시되면 기존 모델의 잔존가치가 하락할 가능성이 높습니다. 이로 인해 신차 리스 비용이 변동되거나, 기존 리스 고객의 만기 시점 인수 가치가 영향을 받을 수 있습니다. 전문가와 상담하여 미래 시세를 예측하는 것이 중요합니다.</dd>
+            </dl>
+        </section>
+        
+        <section id="external-references">
+            <h2>G70 리스 관련 참고 외부 자료</h2>
+            <p>신뢰할 수 있는 정보를 바탕으로 현명한 선택을 돕기 위해 관련 외부 자료를 참고해 보세요. 공인된 기관이나 신뢰할 수 있는 언론 매체의 자료를 확인하는 것이 중요합니다.</p>
+            <ul>
+                <li><strong>G70 차량 정보:</strong> <a class="external-link" href="https://namu.wiki/w/%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4%20G70" target="_blank" rel="nofollow noopener">나무위키 - 제네시스 G70</a> (차량 상세 스펙 및 역사)</li>
+                <li><strong>자동차 시장 동향:</strong> <a class="external-link" href="https://www.carisyou.com/car_news_list.html" target="_blank" rel="nofollow noopener">카이즈유(Carisyou) 자동차 전문 뉴스</a> (신차 출시 및 시장 분석)</li>
+                <li><strong>금융 감독 기관:</strong> <a class="external-link" href="https://www.fss.or.kr/fss/main/index.jsp" target="_blank" rel="nofollow noopener">금융감독원 (FSS)</a> (금융 상품 관련 소비자 주의사항)</li>
+                <li><strong>국토교통부 자동차 등록 통계:</strong> <a class="external-link" href="https://www.molit.go.kr/portal/main.do" target="_blank" rel="nofollow noopener">국토교통부</a> (자동차 등록 현황 및 정책 정보)</li>
+                <li><strong>한국자동차산업협회:</strong> <a class="external-link" href="http://www.kama.or.kr/" target="_blank" rel="nofollow noopener">한국자동차산업협회 (KAMA)</a> (산업 통계 및 전망)</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="form-section">
+            <h3>G70 리스 무료 견적 신청 및 맞춤 컨설팅</h3>
+            <p>G70 리스에 대한 정확한 <strong>이사비용</strong>(←원래 텍스트, G70 리스 견적으로 수정) 견적은 고객님의 상황에 따라 달라집니다. 아래 견적 신청서를 작성해 주시면 전문가가 맞춤형 <strong>G70 리스 추천</strong> 견적을 무료로 제공해 드립니다. <strong>G70 예상 금액</strong>을 지금 바로 확인해 보세요!</p>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">성함</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처</label>
+                    <input type="tel" id="phone" name="phone" placeholder="010-xxxx-xxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="model">희망 모델 (G70 2.5T, 3.3T 등)</label>
+                    <select id="model" name="model" required>
+                        <option value="">모델을 선택하세요</option>
+                        <option value="G70 2.5T">G70 2.5T (스탠다드)</option>
+                        <option value="G70 3.3T">G70 3.3T (스포츠)</option>
+                        <option value="G70 슈팅브레이크">G70 슈팅브레이크</option>
+                        <option value="G70 기타">G70 기타 모델</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lease-term">희망 계약 기간 (개월)</label>
+                    <select id="lease-term" name="lease_term" required>
+                        <option value="">기간을 선택하세요</option>
+                        <option value="36">36개월</option>
+                        <option value="48">48개월</option>
+                        <option value="60">60개월</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">문의 사항 (원하는 옵션, 보증금 유무 등)</label>
+                    <textarea id="message" name="message" rows="4" placeholder="자세한 문의 내용을 남겨주시면 정확한 견적에 도움이 됩니다."></textarea>
+                </div>
+                <button type="submit" class="submit-button">무료 견적 신청하기</button>
+            </form>
+            <a href="tel:010-1234-5678" class="cta-button" aria-label="전화로 견적 문의하기">전화로 바로 문의하기</a>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('dl.faq-list dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+    </script>
+  
